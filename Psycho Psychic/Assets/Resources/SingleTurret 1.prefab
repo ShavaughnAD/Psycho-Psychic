@@ -75,8 +75,8 @@ GameObject:
   - component: {fileID: 652134177000863569}
   - component: {fileID: 6498784419611724712}
   - component: {fileID: 6273860230803850813}
-  - component: {fileID: 1102998536437403115}
   - component: {fileID: 7434205156770132816}
+  - component: {fileID: 4364637116042457203}
   m_Layer: 0
   m_Name: SingleTurret 1
   m_TagString: Enemy
@@ -159,22 +159,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.3571441, y: 0.9, z: 1.3144763}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1102998536437403115
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4759328387583901556}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cffa52e7c7ce4d04aa2743da8c583eac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 10
-  currentHealth: 0
-  damageTaken: 0
-  healingRecieved: 0
 --- !u!114 &7434205156770132816
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,7 +173,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mask:
     serializedVersion: 2
-    m_Bits: 257
+    m_Bits: 256
   distance: 25
   speed: 100
   cancelTime: 0.5
@@ -201,6 +185,23 @@ MonoBehaviour:
   turretMuzzle: {fileID: 1151511874216829439}
   oscillateSpeed: 0.7
   oscillateAngle: 90
+--- !u!114 &4364637116042457203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4759328387583901556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43b462719e352cb44bee7858f6209f51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 30
+  currentHealth: 0
+  damageTaken: 0
+  healingRecieved: 0
+  popup: {fileID: 0}
 --- !u!1 &5912984549535346255
 GameObject:
   m_ObjectHideFlags: 0

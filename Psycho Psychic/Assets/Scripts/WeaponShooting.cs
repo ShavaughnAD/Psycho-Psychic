@@ -6,18 +6,27 @@ public class WeaponShooting : MonoBehaviour
 {
     public GameObject ammo = null;
     public GameObject target;
-    public LayerMask mask;
-    //public float shootTimer = 0;
-    //public float rate = 0;
+    public float damage = 5;
+    float shootTimer = 0;
+    public float rate = 0;
     public float force = 50;
     public float distance = 20;
     public Transform spawnPoint = null;
     public bool equipped = false;
     public bool thrown = false;
+    public bool controlling = false;
+
+    Transform playerTrans;
     WeaponThrow weaponThrow;
+    Rigidbody rb;
+    CameraController cam;
 
     void Awake()
     {
+        rb = GetComponent<Rigidbody>();
+        playerTrans = GameObject.FindGameObjectWithTag("Player").transform;
+        cam = Camera.main.GetComponent<CameraController>();
+
         if (transform.parent.tag == "Player")
         {
             equipped = true;
@@ -29,15 +38,16 @@ public class WeaponShooting : MonoBehaviour
         }
     }
 
-    void Update()
+    public void Update()
     {
         if (equipped)
         {
+            weaponThrow = GameObject.FindGameObjectWithTag("Player").GetComponent<WeaponThrow>();
             RaycastHit hit;
-            Ray ray = new Ray(spawnPoint.position, spawnPoint.forward);
-            if(Physics.Raycast(ray, out hit, distance, mask))
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if(Physics.Raycast(ray, out hit, distance))
             {
-                if (Input.GetKey(KeyCode.Alpha2) && hit.collider.tag == "Enemy")
+                if(Input.GetKey(KeyCode.Alpha2) && hit.collider.tag == "Enemy")
                 {
                     target = hit.collider.gameObject;
                 }
@@ -47,23 +57,33 @@ public class WeaponShooting : MonoBehaviour
             {
                 transform.LookAt(target.transform);
             }
-            if (Input.GetKeyDown(KeyCode.Mouse0))
+            ShootProjectile();
+
+            if(thrown && Input.GetKeyDown(KeyCode.Alpha3))
             {
-                ShootProjectile();
+                controlling = true;
+                cam.target = transform;
+                cam.ToggleFocusPlayer();
+                rb.isKinematic = true;
+                transform.rotation = Quaternion.identity;
+                transform.Rotate(playerTrans.forward);
+                Debug.Log("Control Weapon");
             }
         }
     }
 
-    void ShootProjectile()
+    public void ShootProjectile()
     {
-        GameObject bullet = Instantiate(ammo, spawnPoint.position, spawnPoint.rotation);
-        bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * force;
-        //shootTimer += Time.deltaTime;
-        //if (shootTimer >= rate)
-        //{
-        //    GameObject bullet = Instantiate(ammo, spawnPoint.position, spawnPoint.rotation);
-        //    bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * force;
-        //    shootTimer = 0;
-        //}
+        shootTimer += Time.deltaTime;
+        if (Input.GetKey(KeyCode.Mouse0))
+        {
+            if (shootTimer >= rate)
+            {
+                GameObject bullet = Instantiate(ammo, spawnPoint.position, spawnPoint.rotation);
+                bullet.GetComponent<Damage>().damage = damage;
+                bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * force;
+                shootTimer = 0;
+            }
+        }
     }
 }

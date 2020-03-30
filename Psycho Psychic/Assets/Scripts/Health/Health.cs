@@ -15,7 +15,7 @@ public class Health : MonoBehaviour
     public HealthDelegate onDeath = new HealthDelegate();
     public HealthDelegate onHeal = new HealthDelegate();
 
-    protected void Awake()
+    public virtual void Awake()
     {
         ResetHealth();
     }
@@ -26,10 +26,10 @@ public class Health : MonoBehaviour
         if (currentHealth <= 0) return;
         currentHealth = Mathf.Clamp(currentHealth - damageAmount, 0, maxHealth);
         Debug.LogError(gameObject.name + " Took " + damageAmount + "  Damage");
-        if (popup != null)
-        {
-            ShowFloatingText();
-        }
+        //if (popup != null)
+        //{
+        //    ShowFloatingText();
+        //}
         if (currentHealth == 0)
         {
             onDeath.CallEvent(0);
@@ -39,8 +39,6 @@ public class Health : MonoBehaviour
             damageTaken = damageAmount;
             onHurt.CallEvent(currentHealth / maxHealth);
         }
-        
-            
     }
 
     public virtual void ResetHealth()
@@ -60,9 +58,15 @@ public class Health : MonoBehaviour
         }
     }
 
-    void ShowFloatingText()
+    public virtual void DamageFloatingText()
     {
         var go = Instantiate(popup, transform.position, Quaternion.identity, transform);
         go.GetComponent<TextMesh>().text = damageTaken.ToString();
+    }
+
+    public virtual void HealingFloatingText()
+    {
+        var go = Instantiate(popup, transform.position, Quaternion.identity, transform);
+        go.GetComponent<TextMesh>().text = healingRecieved.ToString();
     }
 }
