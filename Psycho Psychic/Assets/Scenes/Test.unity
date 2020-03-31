@@ -349,7 +349,7 @@ Transform:
   m_GameObject: {fileID: 129636437}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 10, y: 1, z: 10}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
@@ -1801,8 +1801,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 893340094}
-  - component: {fileID: 893340093}
   - component: {fileID: 893340092}
+  - component: {fileID: 893340093}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -1832,13 +1832,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 893340091}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cffa52e7c7ce4d04aa2743da8c583eac, type: 3}
+  m_Script: {fileID: 11500000, guid: 43b462719e352cb44bee7858f6209f51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 30
+  maxHealth: 9999
   currentHealth: 0
   damageTaken: 0
   healingRecieved: 0
+  popup: {fileID: 0}
 --- !u!4 &893340094
 Transform:
   m_ObjectHideFlags: 0

@@ -63,11 +63,10 @@ public class WeaponShooting : MonoBehaviour
             {
                 controlling = true;
                 cam.target = transform;
-                //cam.ToggleFocusPlayer();
+                cam.focusPlayer = false;
                 rb.isKinematic = true;
                 transform.rotation = Quaternion.identity;
                 transform.Rotate(playerTrans.forward);
-                Debug.Log("Control Weapon");
             }
         }
     }

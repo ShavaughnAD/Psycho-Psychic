@@ -25,11 +25,6 @@ public class Health : MonoBehaviour
         if (immune) return;
         if (currentHealth <= 0) return;
         currentHealth = Mathf.Clamp(currentHealth - damageAmount, 0, maxHealth);
-        Debug.LogError(gameObject.name + " Took " + damageAmount + "  Damage");
-        //if (popup != null)
-        //{
-        //    ShowFloatingText();
-        //}
         if (currentHealth == 0)
         {
             onDeath.CallEvent(0);
