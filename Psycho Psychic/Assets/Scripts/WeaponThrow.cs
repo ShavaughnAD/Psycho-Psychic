@@ -43,6 +43,7 @@ public class WeaponThrow : MonoBehaviour
         {
             if (isThrown)
             {
+                Camera.main.GetComponent<CameraController>().focusPlayer = true;
                 ReturnWeapon();
             }
         }

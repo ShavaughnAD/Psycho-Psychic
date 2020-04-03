@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Scenes/Popup Text Test.unity
+- path: Assets/Scenes/L1V1.0.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0

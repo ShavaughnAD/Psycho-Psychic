@@ -36,6 +36,7 @@ public class SettingsMenu : MonoBehaviour
         resolutionDropdown.AddOptions(options);
         resolutionDropdown.value = currentResolutionIndex;
         resolutionDropdown.RefreshShownValue();
+        audioMixer = Resources.Load("MainMixer") as AudioMixer;
     }
 
     public void SetReolution(int resolutionIndex)

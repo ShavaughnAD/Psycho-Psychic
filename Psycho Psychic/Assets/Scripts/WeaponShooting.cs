@@ -63,11 +63,10 @@ public class WeaponShooting : MonoBehaviour
             {
                 controlling = true;
                 cam.target = transform;
-                cam.ToggleFocusPlayer();
+                cam.focusPlayer = false;
                 rb.isKinematic = true;
                 transform.rotation = Quaternion.identity;
                 transform.Rotate(playerTrans.forward);
-                Debug.Log("Control Weapon");
             }
         }
     }
@@ -83,6 +82,7 @@ public class WeaponShooting : MonoBehaviour
                 bullet.GetComponent<Damage>().damage = damage;
                 bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * force;
                 shootTimer = 0;
+                AudioManager.audioManager.Play("BGM");
             }
         }
     }
