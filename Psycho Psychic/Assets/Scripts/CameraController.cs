@@ -41,7 +41,9 @@ public class CameraController : MonoBehaviour
         else
         {
             target.Rotate(0, horizontal, 0);
-            target.Rotate(vertical, 0, 0);
+            target.Rotate(-vertical, 0, 0);
+            pivot.Rotate(vertical, 0, 0);
+            pivot.Rotate(0, horizontal, 0);
             transform.LookAt(target);
             //pivot.Rotate(-vertical, 0, 0);
         }

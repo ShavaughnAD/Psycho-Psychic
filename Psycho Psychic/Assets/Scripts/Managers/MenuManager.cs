@@ -11,17 +11,28 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private GameObject credits;
     [SerializeField] private GameObject quitPrompt;
 
-    public void GotoLevel1()
+    public void PlayGame()
     {
-        //SceneManager.LoadScene("Test");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
-    public void GotoLevel2()
+
+    public void GoToLevelName(string _sceneName)
     {
-        //SceneManager.LoadScene("Popup Text Test");
+        SceneManager.LoadScene(_sceneName);
     }
+
+    public void GoToLevelIndex(int _buildIndex)
+    {
+        SceneManager.LoadScene(_buildIndex);
+    }
+
     public void EndGame()
     {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
         Application.Quit();
+#endif
     }
     public void OpenLevelSelect()
     {
